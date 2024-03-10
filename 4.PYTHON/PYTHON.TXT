@@ -1,0 +1,244 @@
+py repl
+module
+comment ,esc. seq. ch. ,print state. ,chat
+variable and data types
+operators
+type casting
+function and pass ,recursion
+5 types of args and return state.
+if else pocket money program and if any in ds: and short hand
+match calculator program
+break and continue pocket money spent
+for in loop with range ,enumerate 2things ,else
+while | do while loop
+fstring & docstring ,pep8 ,zenOfPython
+str ,tup are immutable unlike list ,dict
+is -> exact location of obj in memory where == -> value where 
+
+SLICE : str ,lst
+    names[::-1] | names[3:-3] | names[:-1]+names[-1:] | name[1:]+name[0]
+
+time -> hour = int(time.strftime('%H'))
+
+in-built function :
+    name[key] name.get('key') 
+    type enumerate input print format
+    int float str
+    ord hex oct  
+    tuple set list dict
+    min max sum -> itr  -> pass args or sequencial ds
+
+str ,lst ,tup function :
+    index find count len + 
+
+str function :
+    replace capitalize swapcase center start/endswith
+    isalnum | alpha | lower | upper | title | space | printable 
+
+lst function :
+    marks = [i*i for i in range(15) if i%2 == 0]
+    sort(reverse=True) reverse append insert copy l.extend(m) pop(i) pop() -> poppedVal
+
+tuple function :
+    tup = (3,)
+
+set ,dic function :
+    del clear update -> itr  pop -> poppedVal
+
+set function : s = set() s = {2,5,6,5}
+    add remove discard 
+    isdisjoint issuperset issubset
+    union intersection_update symmetric_difference difference
+
+dictionary function :
+    popitem keys values items get
+
+if(n < 0):
+    raise valueError('val is not negative')
+try:
+except ValueError:
+except indexError:
+except Exception as e:
+except:
+return blank
+finally:
+
+folder : python-venv
+python -m venv myenv
+myenv\Scripts\activate.bat or ps1
+pip install pandas == 1.4.4 -> pandas.__version__
+deactivate
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+
+def rand():
+    import string as str
+    posOp = str.ascii_letters + str.digits
+    from random import choices -> random.randint(0,2)
+    return rand_str = "".join(choices(posOp ,k=10))
+
+if(__name__ == "__main__"):
+    rand()
+
+
+
+import os
+
+print(dir(os))
+
+if(not os.path.exists("data")):
+    os.mkdir('data')
+
+for folder in range(100):
+    if(not os.path.exists(f"data/Day{folder+1}")):
+        os.mkdir(f"data/Day{folder+1}")
+
+for folder in range(100):
+    os.rename(f"data/Day{folder+1}",f"data/Tutorial {folder+1}")
+
+folders = os.listdir("data")
+print(folders)
+for folder in folders:
+    print(folder)
+    print(os.listdir(f"data/{folder}"))
+
+print(os.getcwd())
+os.chdir('./Users')
+
+
+file = open(fileName,mode:w,a,r,rb,rt)
+text = file.read() or len = file.write("Hi")
+file.close()
+
+
+with open('mark.txt', 'r') as file:
+    i = 0
+    while True :
+        i = i + 1
+        line = file.readline()
+        if not line :
+            break
+        marks = line.split(',')
+        print(f"marks of student {i} are {marks[0]}")
+        print(f"marks of student {i} are {marks[1]}")
+        print(f"marks of student {i} are {marks[2]}")
+
+with open('mark.txt', 'w') as file:
+    lines = ['line1\n','line2\n','line3\n','line4\n']
+    file.writelines(lines)
+
+
+with open('newfile.txt','a') as file:
+    file.write("10111213")
+    file.truncate(15)
+
+with open('newfile.txt','r') as file :
+    file.seek(4)
+    seek = file.tell()
+    print(seek)
+    text = file.read(2)
+    print(text)
+
+
+cube_list = list(map(lambda x : x*x*x,[1,2,3,4,5]))
+new_str = ' '.join(list(filter(lambda ch : ch != "",s.split(' ')[::-1]))).strip(' ')
+s = ' '.join(s.split()[::-1])
+reduced_val = reduce(lambda x,y : x+y, [1,2,3,4,5])
+
+def greet(fx):
+    def mfx():
+        print('Good Morning')
+        fx()
+        print('Thanks for using this function')
+    return mfx
+
+@greet
+def hello():
+    print('hello')
+
+hello() 
+# - decorated func()
+# greet(hello)() 
+# - decorator func(decorated func)()
+
+
+
+class Animal :
+    def __init__(self,species):
+        self.species = species
+    def _info(self):
+        print(f"I'm {self.species}") #private but excess in one inheritance level
+
+class Person(Animal) :
+    copaneyName = 'Apple' #class variable const in obj.
+    noOfPerson = 0
+    @classmethod
+    def changeCompaney(cls,newCompaney):
+            cls.copaneyName = newCompaney
+    def __init__(self,species, name, value):
+        super().__init__(species)
+        self.name = name     #public
+        self._value = value  #instance variable varies in obj.
+        self.__bankBalance = 1000 #private name mangling
+        Person.noOfPerson += 1
+    @classmethod
+    def fromString(cls,str):
+        strLst = str.split()
+        return cls(strLst[0],strLst[1],strLst[2])
+    @property
+    def ten_value(self):
+        return 10*self._value
+    @ten_value.setter
+    def ten_value(self, new_value):
+        self._value = new_value/10
+    @staticmethod
+    def add(a, b):
+        return a + b
+    def info(self):
+        super()._info()
+        print(f"My name is {self.name} and {self._value} and {self.copaneyName}")
+
+# Person1 = Person(Human,John,10)
+Person1 = Person.fromStr("Human John 10")
+Person1.copaneyName = 'Apple ,India' #instance variable it's change method change it not class var
+# Person.copaneyName = 'Apple ,Electronics'
+Person1.changeCompaney('Apple ,Electronics')
+print(Person.copaneyName) #class variable -> class method
+# Person1.ten_value = 67
+print(Person.add(1,2))
+print(Person1.ten_value,Person1._Person__bankBalance)
+Person1.info() #Person.info(Person1)
+# Person1._show()
+print(Person1.__dir__(),dir(Person1),Person1.__class__)
+print(Person1.__dict__)
+print(help(str) ,help(Person))
+
+
+
+import re
+
+pattern = r"[A-Z]+yclone"
+patLen = len(pattern)
+text = '''My name is Harry Cyclone ,Harry cyclone is a good Dyclone boy'''
+
+matches = re.finditer(pattern, text)
+for match in matches:
+    subMatch = match.span() #tuple
+    for idx,i in enumerate(subMatch):
+        if(idx%2 != 0):
+            continue
+        print(text[i:i+6])
+
+'''
+[] : char class
+^  : begning
+$  : end
+.  : ch except new line
+?  : occ = {0,1}
+|  : any one
+*  : occ = [0,infinity]
++  : occ = [1,infinity]
+{} : no of occ
+() : enclose grm of res
+'''
